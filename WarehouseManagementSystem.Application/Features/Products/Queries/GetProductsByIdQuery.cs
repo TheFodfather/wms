@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using WarehouseManagementSystem.Application.Features.Products.DTOs;
 using WarehouseManagementSystem.Application.Interfaces;
-using WarehouseManagementSystem.Application.Products.DTOs;
 
-namespace WarehouseManagementSystem.Application.Products.Queries
+namespace WarehouseManagementSystem.Application.Features.Products.Queries
 {
     public class GetProductByIdQuery : IRequest<UpdateProductDto>
     {

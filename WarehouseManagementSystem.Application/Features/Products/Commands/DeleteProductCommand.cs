@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using WarehouseManagementSystem.Application.Interfaces;
 
-namespace WarehouseManagementSystem.Application.Products.Commands
+namespace WarehouseManagementSystem.Application.Features.Products.Commands
 {
     public class DeleteProductCommand : IRequest<Unit>
     {

@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using WarehouseManagementSystem.Application.Features.Products.DTOs;
 using WarehouseManagementSystem.Application.Interfaces;
-using WarehouseManagementSystem.Application.Products.DTOs;
 using WarehouseManagementSystem.Domain.Entities;
 
-namespace WarehouseManagementSystem.Application.Products.Commands
+namespace WarehouseManagementSystem.Application.Features.Products.Commands
 {
     public class UpdateProductCommand : IRequest<Unit>
     {

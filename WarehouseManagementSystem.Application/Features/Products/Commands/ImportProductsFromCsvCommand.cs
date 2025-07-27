@@ -5,9 +5,9 @@ using System.Globalization;
 using WarehouseManagementSystem.Application.Interfaces;
 using WarehouseManagementSystem.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using WarehouseManagementSystem.Application.Products.DTOs;
+using WarehouseManagementSystem.Application.Features.Products.DTOs;
 
-namespace WarehouseManagementSystem.Application.Products.Commands
+namespace WarehouseManagementSystem.Application.Features.Products.Commands
 {
 
     public class ImportProductsFromCsvCommand : IRequest<ImportResultDto>
@@ -114,7 +114,7 @@ namespace WarehouseManagementSystem.Application.Products.Commands
                     product.Name = name;
                     product.ManufacturersCode = recordDict["manufacturerscode"] as string;
                     product.DateUpdated = DateTime.UtcNow;
-                    product.IsActive = (recordDict["isactive"] as string) == "1";
+                    product.IsActive = recordDict["isactive"] as string == "1";
                     product.Summary = recordDict["summary"] as string;
                     product.Weight = decimal.TryParse(recordDict["weight"] as string, out var w) ? w : 0;
                     product.WeightUnit = recordDict["weightunit"] as string;

@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
+using WarehouseManagementSystem.Application.Features.Products.DTOs;
 using WarehouseManagementSystem.Application.Interfaces;
-using WarehouseManagementSystem.Application.Products.DTOs;
 
-namespace WarehouseManagementSystem.Application.Products.Queries
+namespace WarehouseManagementSystem.Application.Features.Products.Queries
 {
     public class GetAllProductsQuery : IRequest<IEnumerable<ProductDto>> { }
 
@@ -32,7 +32,7 @@ namespace WarehouseManagementSystem.Application.Products.Queries
                     CostPrice = p.CostPrice,
                     SellPrice = p.SellPrice,
                     Qty = p.Qty,
-                    PriceMarginPercentage = p.SellPrice > 0 ? ((p.SellPrice - p.CostPrice) / p.SellPrice) * 100 : 0
+                    PriceMarginPercentage = p.SellPrice > 0 ? (p.SellPrice - p.CostPrice) / p.SellPrice * 100 : 0
                 })
                 .ToListAsync(cancellationToken);
         }

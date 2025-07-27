@@ -1,4 +1,4 @@
-﻿namespace WarehouseManagementSystem.Application.Products.DTOs
+﻿namespace WarehouseManagementSystem.Application.Features.Products.DTOs
 {
     public class ImportResultDto
     {

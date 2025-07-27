@@ -1,12 +1,10 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel;
 
-namespace WarehouseManagementSystem.Application.Products.DTOs
+namespace WarehouseManagementSystem.Application.Features.Products.DTOs
 {
-    public class UpdateProductDto
+    public class CreateProductDto
     {
-        public int Id { get; set; }
-
         [Required]
         public required string Sku { get; set; }
 
