@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseMangementSystem.Web", "WarehouseMangementSystem.Web.csproj", "{F7F7387C-AB4E-41BD-84F6-428AE1BD8A04}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseManagementSystem.Web", "WarehouseManagementSystem.Web.csproj", "{F7F7387C-AB4E-41BD-84F6-428AE1BD8A04}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WarehouseManagementSystem.Domain", "..\WarehouseManagementSystem.Domain\WarehouseManagementSystem.Domain.csproj", "{36D2AFCC-4871-4927-A14D-7E9232C66BBF}"
 EndProject
