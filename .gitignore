@@ -1,0 +1,50 @@
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# IDE-specific files
+.vs/
+.vscode/
+*.njsproj
+*.sln.ide
+*.project.lock.json
+
+# Rider / Resharper
+_ReSharper*/
+*.resharper
+.idea/
+
+# Mac / Linux files
+.DS_Store
+*.swp
+
+# Visual Studio Code
+.vscode
+
+# NuGet packages
+*.nupkg
+*.nuget.props
+*.nuget.targets
+packages/
+*.nuget.cache
+
+# Other
+*.zip
+*.rar
+Thumbs.db
