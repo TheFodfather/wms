@@ -1,0 +1,12 @@
+E:\spenc\source\repos\wms\WarehouseManagementSystem.Domain\bin\Debug\net8.0\WarehouseManagementSystem.Domain.deps.json
+E:\spenc\source\repos\wms\WarehouseManagementSystem.Domain\bin\Debug\net8.0\WarehouseManagementSystem.Domain.dll
+E:\spenc\source\repos\wms\WarehouseManagementSystem.Domain\bin\Debug\net8.0\WarehouseManagementSystem.Domain.pdb
+E:\spenc\source\repos\wms\WarehouseManagementSystem.Domain\obj\Debug\net8.0\WarehouseManagementSystem.Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\spenc\source\repos\wms\WarehouseManagementSystem.Domain\obj\Debug\net8.0\WarehouseManagementSystem.Domain.AssemblyInfoInputs.cache
+E:\spenc\source\repos\wms\WarehouseManagementSystem.Domain\obj\Debug\net8.0\WarehouseManagementSystem.Domain.AssemblyInfo.cs
+E:\spenc\source\repos\wms\WarehouseManagementSystem.Domain\obj\Debug\net8.0\WarehouseManagementSystem.Domain.csproj.CoreCompileInputs.cache
+E:\spenc\source\repos\wms\WarehouseManagementSystem.Domain\obj\Debug\net8.0\WarehouseManagementSystem.Domain.sourcelink.json
+E:\spenc\source\repos\wms\WarehouseManagementSystem.Domain\obj\Debug\net8.0\WarehouseManagementSystem.Domain.dll
+E:\spenc\source\repos\wms\WarehouseManagementSystem.Domain\obj\Debug\net8.0\refint\WarehouseManagementSystem.Domain.dll
+E:\spenc\source\repos\wms\WarehouseManagementSystem.Domain\obj\Debug\net8.0\WarehouseManagementSystem.Domain.pdb
+E:\spenc\source\repos\wms\WarehouseManagementSystem.Domain\obj\Debug\net8.0\ref\WarehouseManagementSystem.Domain.dll
