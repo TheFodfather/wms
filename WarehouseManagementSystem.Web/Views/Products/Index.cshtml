@@ -1,0 +1,159 @@
+﻿@{
+    ViewData["Title"] = "Product Inventory";
+}
+
+<div class="container-fluid mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>@ViewData["Title"]</h2>
+    </div>
+
+    @if (TempData["Message"] != null)
+    {
+        var isSuccess = Convert.ToBoolean(TempData["IsSuccess"]);
+        var alertClass = isSuccess ? "alert-success" : "alert-danger";
+
+        <div class="alert @alertClass alert-dismissible fade show" role="alert">
+            @Html.Raw(TempData["Message"])
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+
+    <!-- CSV Import Card -->
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header py-3">
+            <h6 class="fw-bold text-primary m-0"><i class="fas fa-upload me-2"></i>CSV Import</h6>
+        </div>
+        <div class="card-body">
+            <p>Upload a CSV file to add new products or update existing ones based on SKU.</p>
+            <form id="csvImportForm" asp-action="ImportCsv" asp-controller="Products" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <div class="input-group">
+                    <input type="file" name="file" class="form-control" id="csvFile" accept=".csv" required>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-file-import me-1"></i> Upload and Process
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Product List Card -->
+    <div class="card shadow-sm">
+        <div class="card-header py-3">
+            <h6 class="fw-bold text-primary m-0"><i class="fas fa-box-open me-2"></i>Product List</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="productsTable" class="table-striped table-bordered table-hover table" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>SKU</th>
+                            <th>Name</th>
+                            <th>Manufacturer</th>
+                            <th>Category</th>
+                            <th class="text-end">Cost Price</th>
+                            <th class="text-end">Sell Price</th>
+                            <th class="text-center">Qty</th>
+                            <th class="text-center">Margin</th>
+                            <th class="text-center">Actions</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form id="deleteForm" asp-action="Delete" method="post">
+    @Html.AntiForgeryToken()
+    <input type="hidden" id="deleteId" name="id" />
+</form>
+
+@section Scripts {
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.13.2/datatables.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.13.2/datatables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var table = $('#productsTable').DataTable({
+                "dom": "<'row'<'col-sm-12 col-md-6'l><'col-sm-12 col-md-6'f>>" +
+                       "<'row'<'col-sm-12'tr>>" +
+                       "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                "processing": true,
+                "ajax": {
+                    "url": "/Products/GetProducts",
+                    "type": "POST",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "sku", "className": "align-middle" },
+                    { "data": "name", "className": "align-middle" },
+                    { "data": "manufacturer", "className": "align-middle" },
+                    { "data": "category", "className": "align-middle" },
+                    { "data": "costPrice", "className": "text-end align-middle", "render": $.fn.dataTable.render.number(',', '.', 4, '£') },
+                    { "data": "sellPrice", "className": "text-end align-middle", "render": $.fn.dataTable.render.number(',', '.', 4, '£') },
+                    { "data": "qty", "className": "text-center align-middle" },
+                    {
+                        "data": "priceMarginPercentage",
+                        "className": "text-center align-middle",
+                        "render": function(data, type, row) {
+                            if (type === 'display') {
+                                let margin = parseFloat(data);
+                                let textClass = 'text-danger';
+                                if (margin > 25) {
+                                    textClass = 'text-success';
+                                } else if (margin > 15) {
+                                    textClass = 'text-warning';
+                                }
+                                return `<span class="${textClass} fw-bold">${margin.toFixed(2)}%</span>`;
+                            }
+                            return data;
+                        }
+                    },
+                    {
+                        "data": "id",
+                        "className": "text-center align-middle",
+                        "render": function (data) {
+                            var editUrl = `/Products/Edit/${data}`;
+                            return `<div class="btn-group" role="group">` +
+                                   `<a href="${editUrl}" class="btn btn-sm btn-outline-primary" title="Edit"><i class="fas fa-edit"></i></a>` +
+                                   `<button class="btn btn-sm btn-outline-danger delete-btn" data-id="${data}" title="Delete"><i class="fas fa-trash"></i></button>` +
+                                   `</div>`;
+                        },
+                        "orderable": false,
+                        "searchable": false
+                    }
+                ],
+                "initComplete": function () {
+                     var createButton = $('<a href="/Products/Create" class="btn btn-primary ms-3">' +
+                                     '<i class="fas fa-plus me-1"></i> Create New' +
+                                     '</a>');
+                    $('#productsTable_filter').append(createButton);
+                }
+            });
+
+            $('#productsTable').on('click', '.delete-btn', function () {
+                var id = $(this).data('id');
+                if (confirm("Are you sure you want to delete this product? This cannot be undone.")) {
+                    $('#deleteId').val(id);
+                    var form = $('#deleteForm');
+                    $.ajax({
+                        url: form.attr('action'),
+                        type: 'POST',
+                        data: form.serialize(),
+                        success: function(result) {
+                            if(result.success) {
+                                table.ajax.reload(null, false);
+                            }
+                        },
+                        error: function() {
+                            alert("An error occurred while deleting the product.");
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

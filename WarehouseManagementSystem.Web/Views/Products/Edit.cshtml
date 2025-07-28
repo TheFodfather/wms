@@ -1,0 +1,106 @@
+﻿@model WarehouseManagementSystem.Application.Features.Products.DTOs.UpdateProductDto
+
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-7">
+
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h3>@ViewData["Title"]</h3>
+                <p class="text-muted mb-0">Update the details for SKU: <strong>@Model.Sku</strong></p>
+            </div>
+            <div class="card-body">
+                <form asp-action="Edit">
+                    @Html.AntiForgeryToken()
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <input type="hidden" asp-for="Id" />
+
+                    <div class="row g-3">
+
+                        @* --- SOLUTION: Using Floating Labels for Text Inputs --- *@
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input asp-for="Sku" class="form-control" placeholder="SKU" />
+                                <label asp-for="Sku"></label>
+                                <span asp-validation-for="Sku" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input asp-for="Name" class="form-control" placeholder="Product Name" />
+                                <label asp-for="Name"></label>
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input asp-for="ManufacturerName" class="form-control" placeholder="Manufacturer Name" />
+                                <label asp-for="ManufacturerName"></label>
+                                <span asp-validation-for="ManufacturerName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input asp-for="CategoryName" class="form-control" placeholder="Category Name" />
+                                <label asp-for="CategoryName"></label>
+                                <span asp-validation-for="CategoryName" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <hr class="my-4" />
+
+                        @* --- SOLUTION: Using Visible Labels with Input Groups for Currency/Units --- *@
+                        <div class="col-md-5">
+                            <label asp-for="CostPrice" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text">£</span>
+                                <input asp-for="CostPrice" class="form-control" type="text" inputmode="decimal" />
+                            </div>
+                            <span asp-validation-for="CostPrice" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-5">
+                            <label asp-for="SellPrice" class="form-label"></label>
+                            <div class="input-group">
+                                <span class="input-group-text">£</span>
+                                <input asp-for="SellPrice" class="form-control" type="text" inputmode="decimal" />
+                            </div>
+                            <span asp-validation-for="SellPrice" class="text-danger"></span>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label asp-for="Qty" class="form-label"></label>
+                            <div class="input-group">
+                                <input asp-for="Qty" class="form-control" type="text" inputmode="numeric" />
+                            </div>
+                            <span asp-validation-for="Qty" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <hr class="my-4" />
+
+                    <div class="d-flex justify-content-end">
+                        <a asp-action="Index" class="btn btn-outline-secondary me-2">Cancel</a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save me-1"></i> Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
