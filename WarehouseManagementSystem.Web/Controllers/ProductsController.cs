@@ -15,13 +15,11 @@ namespace WarehouseManagementSystem.Web.Controllers
             _mediator = mediator;
         }
 
-        // GET: /Products/
         public IActionResult Index()
         {
             return View();
         }
 
-        // GET: /Products/Create
         public IActionResult Create()
         {
             return View();

@@ -1,6 +1,6 @@
-# Warehouse Management System - Senior Developer Take-Home Test
+# Warehouse Management System
 
-This project is a lightweight Warehouse Management System (WMS) built with ASP.NET Core MVC, following modern architectural best practices. It was designed to demonstrate a maintainable, scalable, and robust application structure suitable for a senior-level role.
+This project is a lightweight Warehouse Management System (WMS) built with ASP.NET Core MVC, following modern architectural best practices. It was designed to demonstrate a maintainable, scalable, and robust application structure.
 
 ## Features
 
